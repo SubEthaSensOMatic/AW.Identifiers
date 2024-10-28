@@ -1,7 +1,7 @@
 # AW.Identifiers
 
-#### [Flakes](##flake)
-#### [URNs](##urn)
+#### [Flakes](#Flake)
+#### [URNs](#URN)
 
 ## Installation
 
