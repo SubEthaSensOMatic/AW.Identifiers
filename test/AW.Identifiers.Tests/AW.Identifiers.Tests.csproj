@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\AW.Urn\AW.Urn.csproj" />
+    <ProjectReference Include="..\..\src\AW.Identifiers\AW.Identifiers.csproj" />
   </ItemGroup>
 
   <ItemGroup>

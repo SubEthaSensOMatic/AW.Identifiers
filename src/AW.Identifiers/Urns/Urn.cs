@@ -1,6 +1,8 @@
-﻿using System;
+﻿using AW.Identifiers.Internal;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -10,9 +12,10 @@ namespace AW.Identifiers;
 /// Urn Implementierung nach RFC-2141
 /// Siehe https://datatracker.ietf.org/doc/html/rfc2141
 /// </summary>
+[Serializable]
 [TypeConverter(typeof(UrnTypeConverter))]
 [JsonConverter(typeof(UrnJsonConverter))]
-public readonly struct Urn : IEquatable<Urn>, IComparable, IComparable<Urn>
+public readonly struct Urn : IEquatable<Urn>, IComparable, IComparable<Urn>, ISerializable
 {
     public static readonly Urn Empty = new(string.Empty, -1, []);
 
@@ -85,6 +88,39 @@ public readonly struct Urn : IEquatable<Urn>, IComparable, IComparable<Urn>
         => this = Empty;
 
     /// <summary>
+    /// Create URN from UUID
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="nids"></param>
+    /// <returns></returns>
+    public static Urn CreateFromGuid(Guid id, IReadOnlyList<string> nids)
+        => new (id.ToString().ToLower(), nids);
+
+    /// <summary>
+    /// Create URN from new UUID
+    /// </summary>
+    /// <param name="nids"></param>
+    /// <returns></returns>
+    public static Urn CreateFromNewGuid(IReadOnlyList<string> nids)
+        => CreateFromGuid(Guid.NewGuid(), nids);
+
+    /// <summary>
+    /// Create URN from flake
+    /// </summary>
+    /// <param name="nids"></param>
+    /// <returns></returns>
+    public static Urn CreateFromFlake(Flake flake, IReadOnlyList<string> nids)
+        => new(flake.ToBase62(), nids);
+
+    /// <summary>
+    /// Create URN from new flake
+    /// </summary>
+    /// <param name="nids"></param>
+    /// <returns></returns>
+    public static Urn CreateFromNewFlake(IReadOnlyList<string> nids)
+        => new(FlakeFactory.Instance.NewFlake().ToBase62(), nids);
+
+    /// <summary>
     /// Create URN from string. Urn string should be encoded.
     /// </summary>
     /// <param name="urn"></param>
@@ -113,6 +149,22 @@ public readonly struct Urn : IEquatable<Urn>, IComparable, IComparable<Urn>
         _canonicalUrn = canonicalUrn;
         _nssStart = nssStart;
         _nidPositions = nids;
+    }
+
+    public Urn(SerializationInfo info, StreamingContext context)
+    {
+        ArgumentNullException.ThrowIfNull(info);
+        var str = info.GetString("#");
+        
+        this = string.IsNullOrWhiteSpace(str)
+            ? Empty
+            : Parse(str);
+    }
+
+    public void GetObjectData(SerializationInfo info, StreamingContext context)
+    {
+        ArgumentNullException.ThrowIfNull(info);
+        info.AddValue("#", _canonicalUrn);
     }
 
     public static bool TryParse(string input, out Urn urn)

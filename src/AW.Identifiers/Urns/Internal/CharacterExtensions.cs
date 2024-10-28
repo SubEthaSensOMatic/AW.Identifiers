@@ -1,4 +1,4 @@
-﻿namespace AW.Identifiers;
+﻿namespace AW.Identifiers.Internal;
 
 internal static class CharacterExtensions
 {
