@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Nullable>enable</Nullable>
-    <Description>AW.ClaimsExpressions is a powerful library that offers a Domain-Specific Language (DSL) for dynamically validating JWT claims. It allows for the creation of expressive and flexible validation rules using a concise grammar. With this library, developers can define complex claim validation logic through logical operators and various claim checks, all without needing to modify code.</Description>
+    <Description>Use AW.Identifiers to streamline ID generation with compact, readable, and meaningful identifiers tailored for scalable, distributed systems.</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
 	<RootNamespace>AW.Identifiers</RootNamespace>
   </PropertyGroup>
@@ -13,9 +13,4 @@
       <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.11.0" />
-  </ItemGroup>
-
 </Project>
