@@ -1,12 +1,14 @@
 # AW.Identifiers
 
+#### [Flakes](##flake)
+#### [URNs](##urn)
+
 ## Installation
 
 You can add this library to your project via NuGet
 
 - [AW.Identifiers](https://www.nuget.org/packages/AW.Identifiers/)
 
-(#flakes)
 ## Flake
 
 Flake IDs provide compact, unique, and time-orderable IDs, ideal for distributed systems. Each ID encodes a timestamp (48 bits), machine ID (4 bits), and sequence number (11 bits), ensuring both uniqueness and natural ordering. Flake IDs are generated efficiently by a Factory, which maintains sequential IDs per machine and prevents collisions by regulating sequences and checking time consistency. These IDs are shorter and more storage-efficient than UUIDs and can be converted to custom base representations (e.g., Base62) for additional flexibility and shorter IDs, making them perfect for scalable, high-throughput systems needing sortable, readable IDs.
