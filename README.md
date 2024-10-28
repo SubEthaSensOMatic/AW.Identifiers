@@ -54,7 +54,7 @@ class Program
 - **Multiple IDs:** The loop generates multiple IDs in sequence, showing how `Flake` IDs are unique and ordered over time.
 - **Base62 Conversion:** Converts a `Flake` ID to a shorter, Base62-encoded string, which is handy for compact ID storage or transmission.
 
-### Two or more service services example
+### Two or more service example
 
 ```
 using System;
