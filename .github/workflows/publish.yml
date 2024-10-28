@@ -31,4 +31,4 @@ jobs:
         run: dotnet pack --configuration Release /p:Version=${{ github.event.release.tag_name }}
       
       - name: Publish AW.Urn
-        run: dotnet nuget push ./src/AW.Urn/bin/Release/*.nupkg --api-key "${{ secrets.NUGET_APIKEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
+        run: dotnet nuget push ./src/AW.Identifiers/bin/Release/*.nupkg --api-key "${{ secrets.NUGET_APIKEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
