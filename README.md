@@ -6,6 +6,7 @@ You can add this library to your project via NuGet
 
 - [AW.Identifiers](https://www.nuget.org/packages/AW.Identifiers/)
 
+(#flakes)
 ## Flake
 
 Flake IDs provide compact, unique, and time-orderable IDs, ideal for distributed systems. Each ID encodes a timestamp (48 bits), machine ID (4 bits), and sequence number (11 bits), ensuring both uniqueness and natural ordering. Flake IDs are generated efficiently by a Factory, which maintains sequential IDs per machine and prevents collisions by regulating sequences and checking time consistency. These IDs are shorter and more storage-efficient than UUIDs and can be converted to custom base representations (e.g., Base62) for additional flexibility and shorter IDs, making them perfect for scalable, high-throughput systems needing sortable, readable IDs.
@@ -93,7 +94,7 @@ class Program
 
 ## URN
 
-URN (Uniform Resource Name) class provides a robust way to create unique and human-readable identifiers that inherently convey information about the type or namespace of an object. Unlike UUIDs or auto-incremented values, which are generic and carry no type information, URNs allow for a discriminator—a namespace within the identifier that specifies the type or context. This feature makes URNs particularly valuable in systems that need structured, semantically meaningful identifiers, such as APIs, microservices, and distributed applications, where object type distinction is essential. By following RFC 2141 standards, the URN class ensures compatibility and interoperability across systems.
+URN (Uniform Resource Name) class provides a robust way to create unique and human-readable identifiers that inherently convey information about the type or namespace of an object. Unlike UUIDs or auto-incremented values, which are generic and carry no type information, URNs allow for a discriminatorâ€”a namespace within the identifier that specifies the type or context. This feature makes URNs particularly valuable in systems that need structured, semantically meaningful identifiers, such as APIs, microservices, and distributed applications, where object type distinction is essential. By following RFC 2141 standards, the URN class ensures compatibility and interoperability across systems.
 
 ### Examples
 
@@ -135,7 +136,7 @@ Console.WriteLine(flakeUrn); // Outputs a URN in the form urn:my-app:offer:<flak
 
 #### 4. Parsing and Validating a URN String
 
-Parse a URN string to create an instance of the `Urn` struct and check if it’s valid.
+Parse a URN string to create an instance of the `Urn` struct and check if itâ€™s valid.
 
 ```
 var urnString = "urn:my-app:order:12345";
